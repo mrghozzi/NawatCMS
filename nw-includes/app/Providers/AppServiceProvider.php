@@ -21,6 +21,10 @@ class AppServiceProvider extends ServiceProvider
                 enginePath: $app->basePath(),
             );
         });
+
+        $this->app->singleton(\App\Services\EnvService::class, function (Application $app): \App\Services\EnvService {
+            return new \App\Services\EnvService($app->basePath('.env'));
+        });
     }
 
     /**
