@@ -35,6 +35,7 @@ This file is the execution reference for agents working on Nawat CMS. It summari
 - **Admin Workspace:** Secure `/admin` routes using standard Laravel Auth. SuperDesign-styled dashboard with native Light/Dark mode and automatic RTL/LTR flipping using CSS Logical Properties.
 - **Content Management:** Unified `posts` table supporting `post` and `page` types.
 - **Taxonomy:** WordPress-style hierarchical `categories` and flat `tags` with `category_post` and `post_tag` pivot tables, integrated directly into the Post editor.
+- **Editor System:** Extensible architecture utilizing an `editor_type` column on the `posts` table. Defaults to Quill.js, featuring WordPress-style "Visual / Code" tabs and native AJAX media upload integration. Old HTML content automatically maps to Quill.
 - **Plugins Engine:** Dynamic plugin discovery in `nw-content/plugins/` with custom `spl_autoload_register` routing. Plugins can register their own Service Providers.
 - **Theme Engine:** `ThemeServiceProvider` dynamically binds the `theme::` namespace to the active theme directory (`nw-content/themes/{slug}`).
 - **Front-end Router:** `FrontController` handles root (`/`) and catch-all slug routing (`/{slug}`), rendering content through the active theme.
