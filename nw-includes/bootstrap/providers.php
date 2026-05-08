@@ -1,11 +1,7 @@
 <?php
 
-use App\Providers\AdminServiceProvider;
-use App\Providers\AppServiceProvider;
-use App\Providers\ThemeServiceProvider;
-
 return [
-    AppServiceProvider::class,
-    AdminServiceProvider::class,
-    ThemeServiceProvider::class,
+    App\Providers\AdminServiceProvider::class,
+    App\Providers\AppServiceProvider::class,
+    App\Providers\ThemeServiceProvider::class,
 ];
