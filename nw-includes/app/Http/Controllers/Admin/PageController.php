@@ -31,6 +31,7 @@ final class PageController extends Controller
             'title' => ['required', 'string', 'max:255'],
             'content' => ['nullable', 'string'],
             'status' => ['required', 'in:published,draft,trash'],
+            'editor_type' => ['nullable', 'string', 'max:50'],
         ]);
 
         $page = new Post($validated);
@@ -62,6 +63,7 @@ final class PageController extends Controller
             'title' => ['required', 'string', 'max:255'],
             'content' => ['nullable', 'string'],
             'status' => ['required', 'in:published,draft,trash'],
+            'editor_type' => ['nullable', 'string', 'max:50'],
         ]);
 
         // Re-generate slug if title changed

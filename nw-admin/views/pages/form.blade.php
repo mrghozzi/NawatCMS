@@ -23,7 +23,11 @@
 
                     <div class="form-group">
                         <label for="content" style="display: block; margin-bottom: 8px; font-weight: 500;">Content <span lang="ar" dir="rtl">المحتوى</span></label>
-                        <textarea id="content" name="content" rows="15" style="width: 100%; padding: 12px; border: 1px solid var(--border); border-radius: 8px; font-size: 14px; font-family: inherit; box-sizing: border-box; resize: vertical; line-height: 1.6;">{{ old('content', $page->content) }}</textarea>
+                        @include('admin::components.editor', [
+                            'name' => 'content', 
+                            'value' => old('content', $page->content), 
+                            'type' => old('editor_type', $page->editor_type ?? 'quill')
+                        ])
                         @error('content') <span style="color: #e53e3e; font-size: 13px; margin-top: 4px; display: block;">{{ $message }}</span> @enderror
                     </div>
                 </div>
@@ -45,7 +49,7 @@
 
                     <div style="padding-top: 16px; border-top: 1px solid var(--border); display: flex; justify-content: flex-end; gap: 12px;">
                         <a href="{{ route('admin.pages.index') }}" style="padding: 10px 16px; border: 1px solid var(--border); border-radius: 8px; color: var(--text); text-decoration: none; font-size: 14px; font-weight: 500;">Cancel</a>
-                        <button type="submit" style="padding: 10px 16px; background: var(--primary); color: white; border: none; border-radius: 8px; font-size: 14px; font-weight: 500; cursor: pointer;">
+                        <button type="submit" style="padding: 10px 16px; background: var(--accent); color: white; border: none; border-radius: 8px; font-size: 14px; font-weight: 500; cursor: pointer;">
                             {{ $page->exists ? 'Update Page' : 'Publish Page' }}
                         </button>
                     </div>
