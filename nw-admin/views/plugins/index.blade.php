@@ -22,7 +22,7 @@
                         <tr>
                             <th style="width: 250px;">Plugin</th>
                             <th>Description</th>
-                            <th style="width: 150px; text-align: right;">Action</th>
+                            <th style="width: 150px; text-align: end;">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -37,7 +37,7 @@
                                 <td style="color: #4b5563;">
                                     {{ $plugin['description'] ?? 'No description available.' }}
                                 </td>
-                                <td style="text-align: right;">
+                                <td style="text-align: end;">
                                     <form action="{{ route('admin.plugins.toggle', $slug) }}" method="POST" style="margin: 0;">
                                         @csrf
                                         @if($plugin['is_active'])

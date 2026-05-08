@@ -5,7 +5,7 @@
 @section('header')
     <div style="display: flex; justify-content: space-between; align-items: center;">
         <h1 class="page-title">
-            <a href="{{ route('admin.menus.index') }}" style="color: #6b7280; text-decoration: none; margin-right: 8px;">&larr;</a>
+            <a href="{{ route('admin.menus.index') }}" style="color: #6b7280; text-decoration: none; margin-inline-end: 8px;">&larr;</a>
             Edit Menu: {{ $menu->name }}
         </h1>
     </div>
@@ -119,7 +119,7 @@
                                 <div style="padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; background: #f9fafb; border-radius: 6px;">
                                     <div>
                                         <strong>{{ $item->title }}</strong>
-                                        <span style="font-size: 12px; color: #6b7280; margin-left: 8px;">
+                                        <span style="font-size: 12px; color: #6b7280; margin-inline-start: 8px;">
                                             {{ $item->type === 'custom' ? 'Custom Link' : ucfirst($item->type) }}
                                         </span>
                                     </div>
@@ -139,7 +139,7 @@
                                             <div style="border: 1px solid #e5e7eb; border-radius: 6px; padding: 10px 16px; display: flex; justify-content: space-between; align-items: center;">
                                                 <div>
                                                     <strong>{{ $child->title }}</strong>
-                                                    <span style="font-size: 12px; color: #6b7280; margin-left: 8px;">
+                                                    <span style="font-size: 12px; color: #6b7280; margin-inline-start: 8px;">
                                                         {{ $child->type === 'custom' ? 'Custom Link' : ucfirst($child->type) }}
                                                     </span>
                                                 </div>

@@ -5,7 +5,7 @@
 
 @section('content')
     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
-        <h2 style="margin: 0; font-size: 20px;">All Pages <span lang="ar" dir="rtl" style="font-size: 14px; color: var(--muted); margin-left: 8px;">جميع الصفحات</span></h2>
+        <h2 style="margin: 0; font-size: 20px;">All Pages <span lang="ar" dir="rtl" style="font-size: 14px; color: var(--muted); margin-inline-start: 8px;">جميع الصفحات</span></h2>
         <a href="{{ route('admin.pages.create') }}" class="primary-action" style="text-decoration: none; display: inline-block;">
             Add New <span lang="ar" dir="rtl">إضافة جديد</span>
         </a>
@@ -22,14 +22,14 @@
     </div>
     
     <div style="background: var(--surface); border: 1px solid var(--border); border-top: none; border-radius: 0 0 12px 12px; overflow: hidden;">
-        <table style="width: 100%; border-collapse: collapse; text-align: left;">
+        <table style="width: 100%; border-collapse: collapse; text-align: start;">
             <thead style="background: var(--bg); border-bottom: 1px solid var(--border);">
                 <tr>
                     <th style="padding: 12px 24px; font-weight: 600; font-size: 13px; color: var(--muted);">Title</th>
                     <th style="padding: 12px 24px; font-weight: 600; font-size: 13px; color: var(--muted);">Author</th>
                     <th style="padding: 12px 24px; font-weight: 600; font-size: 13px; color: var(--muted);">Status</th>
                     <th style="padding: 12px 24px; font-weight: 600; font-size: 13px; color: var(--muted);">Date</th>
-                    <th style="padding: 12px 24px; font-weight: 600; font-size: 13px; color: var(--muted); text-align: right;">Actions</th>
+                    <th style="padding: 12px 24px; font-weight: 600; font-size: 13px; color: var(--muted); text-align: end;">Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -52,8 +52,8 @@
                         <td style="padding: 16px 24px; color: var(--muted); font-size: 14px;">
                             {{ $page->created_at->format('M d, Y') }}
                         </td>
-                        <td style="padding: 16px 24px; text-align: right;">
-                            <a href="{{ route('admin.pages.edit', $page) }}" style="color: var(--accent); text-decoration: none; font-size: 14px; margin-right: 12px; font-weight: 500;">Edit</a>
+                        <td style="padding: 16px 24px; text-align: end;">
+                            <a href="{{ route('admin.pages.edit', $page) }}" style="color: var(--accent); text-decoration: none; font-size: 14px; margin-inline-end: 12px; font-weight: 500;">Edit</a>
                             
                             <form action="{{ route('admin.pages.destroy', $page) }}" method="POST" style="display: inline-block;" onsubmit="return confirm('Are you sure you want to delete this page?');">
                                 @csrf

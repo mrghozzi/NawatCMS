@@ -7,7 +7,7 @@
 .admin-sidebar {
     width: 260px;
     background: var(--surface);
-    border-right: 1px solid var(--border);
+    border-inline-end: 1px solid var(--border);
     display: flex;
     flex-direction: column;
     position: sticky;
@@ -59,7 +59,7 @@
 }
 
 .sidebar-nav a span {
-    margin-left: auto;
+    margin-inline-start: auto;
     font-size: 12px;
     font-weight: 400;
     opacity: 0.6;

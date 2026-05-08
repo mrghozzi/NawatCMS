@@ -41,7 +41,7 @@
                             <tr>
                                 <th>Name</th>
                                 <th>Location</th>
-                                <th style="text-align: right;">Actions</th>
+                                <th style="text-align: end;">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -55,7 +55,7 @@
                                             <span style="color: #9ca3af; font-size: 12px;">Not assigned</span>
                                         @endif
                                     </td>
-                                    <td style="text-align: right;">
+                                    <td style="text-align: end;">
                                         <a href="{{ route('admin.menus.show', $menu) }}" class="btn btn-secondary" style="padding: 4px 12px; font-size: 13px;">Edit Items</a>
                                         <form action="{{ route('admin.menus.destroy', $menu) }}" method="POST" style="display: inline-block;" onsubmit="return confirm('Are you sure you want to delete this menu?');">
                                             @csrf
