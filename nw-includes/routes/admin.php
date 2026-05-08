@@ -29,6 +29,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
         // Content
         Route::resource('posts', \App\Http\Controllers\Admin\PostController::class);
+        Route::resource('categories', \App\Http\Controllers\Admin\CategoryController::class)->except(['create', 'show', 'edit', 'update']);
+        Route::resource('tags', \App\Http\Controllers\Admin\TagController::class)->except(['create', 'show', 'edit', 'update']);
         Route::resource('pages', \App\Http\Controllers\Admin\PageController::class);
 
         // Settings

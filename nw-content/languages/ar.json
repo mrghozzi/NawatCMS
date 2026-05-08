@@ -13,5 +13,15 @@
     "Site Language": "لغة الموقع",
     "Pages": "الصفحات",
     "Plugins": "الإضافات",
-    "Logout": "تسجيل الخروج"
+    "Logout": "تسجيل الخروج",
+    "All Posts": "كل المقالات",
+    "Add Post": "إضافة مقالة",
+    "Categories": "تصنيفات",
+    "Tags": "وسوم",
+    "Name": "الاسم",
+    "Slug": "الرابط اللطيف",
+    "Description": "الوصف",
+    "Parent Category": "التصنيف الأب",
+    "Add New Category": "إضافة تصنيف جديد",
+    "Add New Tag": "إضافة وسم جديد"
 }

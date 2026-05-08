@@ -13,5 +13,15 @@
     "Site Language": "Site Language",
     "Pages": "Pages",
     "Plugins": "Plugins",
-    "Logout": "Logout"
+    "Logout": "Logout",
+    "All Posts": "All Posts",
+    "Add Post": "Add Post",
+    "Categories": "Categories",
+    "Tags": "Tags",
+    "Name": "Name",
+    "Slug": "Slug",
+    "Description": "Description",
+    "Parent Category": "Parent Category",
+    "Add New Category": "Add New Category",
+    "Add New Tag": "Add New Tag"
 }

@@ -35,11 +35,34 @@
                         {{ __('Media') }}
                     </a>
                 </li>
-                <li class="{{ request()->routeIs('admin.posts.*') ? 'is-active' : '' }}">
-                    <a href="{{ route('admin.posts.index') }}">
+                <li class="has-submenu {{ request()->routeIs('admin.posts.*') || request()->routeIs('admin.categories.*') || request()->routeIs('admin.tags.*') ? 'is-active is-expanded' : '' }}">
+                    <a href="{{ route('admin.posts.index') }}" class="submenu-toggle">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 1 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
                         {{ __('Posts') }}
+                        <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-inline-start: auto; transition: transform 0.2s;"><polyline points="6 9 12 15 18 9"></polyline></svg>
                     </a>
+                    <ul class="sidebar-subnav" style="{{ request()->routeIs('admin.posts.*') || request()->routeIs('admin.categories.*') || request()->routeIs('admin.tags.*') ? 'display: block;' : 'display: none;' }} list-style: none; padding: 0; margin: 4px 0 0 0; background: var(--bg); border-radius: 8px; overflow: hidden;">
+                        <li style="margin: 0;">
+                            <a href="{{ route('admin.posts.index') }}" style="padding: 10px 16px 10px 48px; font-size: 13px; color: var(--text); display: block; text-decoration: none; {{ request()->routeIs('admin.posts.index') ? 'font-weight: 600; color: var(--accent);' : '' }}">
+                                {{ __('All Posts') }}
+                            </a>
+                        </li>
+                        <li style="margin: 0;">
+                            <a href="{{ route('admin.posts.create') }}" style="padding: 10px 16px 10px 48px; font-size: 13px; color: var(--text); display: block; text-decoration: none; {{ request()->routeIs('admin.posts.create') ? 'font-weight: 600; color: var(--accent);' : '' }}">
+                                {{ __('Add Post') }}
+                            </a>
+                        </li>
+                        <li style="margin: 0;">
+                            <a href="{{ route('admin.categories.index') }}" style="padding: 10px 16px 10px 48px; font-size: 13px; color: var(--text); display: block; text-decoration: none; {{ request()->routeIs('admin.categories.*') ? 'font-weight: 600; color: var(--accent);' : '' }}">
+                                {{ __('Categories') }}
+                            </a>
+                        </li>
+                        <li style="margin: 0;">
+                            <a href="{{ route('admin.tags.index') }}" style="padding: 10px 16px 10px 48px; font-size: 13px; color: var(--text); display: block; text-decoration: none; {{ request()->routeIs('admin.tags.*') ? 'font-weight: 600; color: var(--accent);' : '' }}">
+                                {{ __('Tags') }}
+                            </a>
+                        </li>
+                    </ul>
                 </li>
                 <li class="{{ request()->routeIs('admin.pages.*') ? 'is-active' : '' }}">
                     <a href="{{ route('admin.pages.index') }}">

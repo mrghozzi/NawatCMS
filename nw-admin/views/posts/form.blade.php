@@ -50,6 +50,46 @@
                         </button>
                     </div>
                 </div>
+
+                <!-- Categories Panel -->
+                <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 24px; margin-top: 24px;">
+                    <h3 style="margin: 0 0 16px; font-size: 16px;">{{ __('Categories') }}</h3>
+                    <div style="max-height: 200px; overflow-y: auto; padding: 12px; border: 1px solid var(--border); border-radius: 6px; background: var(--bg);">
+                        @php
+                            $postCategories = $post->exists ? $post->categories->pluck('id')->toArray() : [];
+                        @endphp
+                        @foreach($categories as $category)
+                            <div style="margin-bottom: 8px;">
+                                <label style="display: flex; align-items: center; gap: 8px; font-size: 14px; cursor: pointer;">
+                                    <input type="checkbox" name="categories[]" value="{{ $category->id }}" {{ in_array($category->id, old('categories', $postCategories)) ? 'checked' : '' }}>
+                                    {{ $category->name }}
+                                </label>
+                                @if($category->children->count())
+                                    <div style="margin-inline-start: 24px; margin-top: 8px;">
+                                        @foreach($category->children as $child)
+                                            <label style="display: flex; align-items: center; gap: 8px; font-size: 14px; cursor: pointer; margin-bottom: 8px;">
+                                                <input type="checkbox" name="categories[]" value="{{ $child->id }}" {{ in_array($child->id, old('categories', $postCategories)) ? 'checked' : '' }}>
+                                                {{ $child->name }}
+                                            </label>
+                                        @endforeach
+                                    </div>
+                                @endif
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+
+                <!-- Tags Panel -->
+                <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 24px; margin-top: 24px;">
+                    <h3 style="margin: 0 0 16px; font-size: 16px;">{{ __('Tags') }}</h3>
+                    <div class="form-group">
+                        <label for="tags" style="display: block; margin-bottom: 8px; font-size: 13px; color: var(--muted);">Separate tags with commas</label>
+                        @php
+                            $postTags = $post->exists ? $post->tags->pluck('name')->implode(', ') : '';
+                        @endphp
+                        <input type="text" id="tags" name="tags" value="{{ old('tags', $postTags) }}" style="width: 100%; padding: 10px; border: 1px solid var(--border); border-radius: 6px; font-size: 14px; font-family: inherit; box-sizing: border-box; background: var(--bg); color: var(--text);">
+                    </div>
+                </div>
             </div>
 
         </div>
