@@ -97,24 +97,31 @@
 
     <main>
         <div class="hero">
-            <h1>Welcome to your new website</h1>
-            <p class="subtitle">This is the default starter theme for Nawat CMS. It's clean, fast, and ready to be customized.</p>
+            <h1>{{ config('app.name', 'Nawat CMS') }}</h1>
+            <p class="subtitle">Welcome to your new website powered by Nawat CMS.</p>
         </div>
 
         <div class="grid">
-            <div class="card">
-                <h3>Built with Laravel</h3>
-                <p>Nawat CMS leverages the power and elegance of Laravel, providing a robust foundation for your project.</p>
-            </div>
-            <div class="card">
-                <h3>Extensible</h3>
-                <p>Easily expand functionality through plugins and customize the look with themes.</p>
-            </div>
-            <div class="card">
-                <h3>Modern Design</h3>
-                <p>Following the SuperDesign system for a clean and cohesive user interface.</p>
-            </div>
+            @forelse($posts as $post)
+                <div class="card">
+                    <h3><a href="{{ route('single', $post->slug) }}" style="color: inherit; text-decoration: none;">{{ $post->title }}</a></h3>
+                    <div style="font-size: 13px; color: #9ca3af; margin-bottom: 12px;">{{ $post->published_at?->format('M d, Y') ?? $post->created_at->format('M d, Y') }}</div>
+                    <p>{{ Str::limit(strip_tags($post->content), 120) }}</p>
+                    <a href="{{ route('single', $post->slug) }}" style="color: #087f8c; text-decoration: none; font-weight: 500; font-size: 14px; display: inline-block; margin-top: 12px;">Read more &rarr;</a>
+                </div>
+            @empty
+                <div class="card" style="grid-column: 1 / -1; text-align: center; padding: 48px;">
+                    <h3>No posts yet.</h3>
+                    <p>When you publish posts, they will appear here.</p>
+                </div>
+            @endforelse
         </div>
+
+        @if(isset($posts) && method_exists($posts, 'links'))
+            <div style="margin-top: 48px; text-align: center;">
+                {{ $posts->links() }}
+            </div>
+        @endif
     </main>
 
     <footer>

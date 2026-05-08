@@ -28,4 +28,18 @@ final class ThemeServiceProvider extends ServiceProvider
             );
         });
     }
+
+    public function boot(): void
+    {
+        $themeService = $this->app->make(ThemeService::class);
+        $activeTheme = $themeService->activeTheme();
+
+        if ($activeTheme) {
+            $this->loadViewsFrom($activeTheme['path'], 'theme');
+        } else {
+            // Fallback if the active theme folder doesn't exist
+            $paths = $this->app->make(NawatPathService::class);
+            $this->loadViewsFrom($paths->themes() . DIRECTORY_SEPARATOR . 'default', 'theme');
+        }
+    }
 }
