@@ -1,9 +1,9 @@
-@props(['name', 'value' => '', 'type' => 'editorjs'])
+@props(['name', 'value' => '', 'type' => 'quill'])
 
 @php
     // If the system has a dynamic setting for default_editor, we could override $type here if it's a new post.
-    // For now, we rely on the $type passed from the form (which defaults to 'editorjs').
-    $activeEditor = $type ?: 'editorjs';
+    // For now, we rely on the $type passed from the form (which defaults to 'quill').
+    $activeEditor = $type ?: 'quill';
 @endphp
 
 <div class="nawat-editor-wrapper">

@@ -26,7 +26,7 @@
                         @include('admin::components.editor', [
                             'name' => 'content', 
                             'value' => old('content', $post->content), 
-                            'type' => old('editor_type', $post->editor_type ?? 'editorjs')
+                            'type' => old('editor_type', $post->editor_type ?? 'quill')
                         ])
                         @error('content') <span style="color: #e53e3e; font-size: 13px; margin-top: 4px; display: block;">{{ $message }}</span> @enderror
                     </div>

@@ -35,66 +35,67 @@
 <script src="https://cdn.jsdelivr.net/npm/@editorjs/delimiter@latest"></script>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        
-        let existingData = {};
-        try {
-            // Check if the value is valid JSON, otherwise it might be empty or old HTML
-            const rawValue = {!! json_encode($value) !!};
-            if (typeof rawValue === 'string' && rawValue.trim().startsWith('{')) {
-                existingData = JSON.parse(rawValue);
+    (function() {
+        function initEditor() {
+            let existingData = {};
+            try {
+                const rawValue = {!! json_encode($value) !!};
+                if (typeof rawValue === 'string' && rawValue.trim().startsWith('{')) {
+                    existingData = JSON.parse(rawValue);
+                }
+            } catch (e) {
+                console.error("Failed to parse existing Editor.js content", e);
             }
-        } catch (e) {
-            console.error("Failed to parse existing Editor.js content", e);
-        }
 
-        const editor = new EditorJS({
-            holder: 'editorjs',
-            data: existingData,
-            placeholder: '{{ __("Let\'s write an awesome story!") }}',
-            tools: {
-                header: {
-                    class: Header,
-                    inlineToolbar: true,
-                    config: {
-                        placeholder: '{{ __("Enter a header") }}',
-                        levels: [2, 3, 4],
-                        defaultLevel: 2
-                    }
-                },
-                list: {
-                    class: List,
-                    inlineToolbar: true,
-                },
-                quote: {
-                    class: Quote,
-                    inlineToolbar: true,
-                    config: {
-                        quotePlaceholder: '{{ __("Enter a quote") }}',
-                        captionPlaceholder: '{{ __("Quote\'s author") }}',
+            try {
+                const editor = new EditorJS({
+                    holder: 'editorjs',
+                    data: existingData,
+                    placeholder: '{{ __("Let\'s write an awesome story!") }}',
+                    tools: {
+                        header: {
+                            class: typeof Header !== 'undefined' ? Header : undefined,
+                            inlineToolbar: true,
+                        },
+                        list: {
+                            class: typeof List !== 'undefined' ? List : (typeof NestedList !== 'undefined' ? NestedList : undefined),
+                            inlineToolbar: true,
+                        },
+                        quote: {
+                            class: typeof Quote !== 'undefined' ? Quote : undefined,
+                            inlineToolbar: true,
+                        },
+                        delimiter: typeof Delimiter !== 'undefined' ? Delimiter : undefined,
                     },
-                },
-                delimiter: Delimiter,
-            },
-            i18n: {
-                direction: document.documentElement.dir || 'ltr',
-            }
-        });
-
-        // Intercept form submission
-        const hiddenInput = document.getElementById('nawat-editorjs-hidden-input');
-        const form = hiddenInput.closest('form');
-        
-        if (form) {
-            form.addEventListener('submit', function (e) {
-                e.preventDefault();
-                editor.save().then((outputData) => {
-                    hiddenInput.value = JSON.stringify(outputData);
-                    form.submit();
-                }).catch((error) => {
-                    console.error('Saving failed: ', error);
+                    i18n: {
+                        direction: document.documentElement.dir || 'ltr',
+                    }
                 });
-            });
+
+                const hiddenInput = document.getElementById('nawat-editorjs-hidden-input');
+                const form = hiddenInput.closest('form');
+                
+                if (form) {
+                    form.addEventListener('submit', function (e) {
+                        e.preventDefault();
+                        editor.save().then((outputData) => {
+                            hiddenInput.value = JSON.stringify(outputData);
+                            form.submit();
+                        }).catch((error) => {
+                            console.error('Saving failed: ', error);
+                        });
+                    });
+                }
+            } catch (e) {
+                document.getElementById('editorjs').innerHTML = '<div style="color: red; padding: 20px;"><strong>Editor Error:</strong> ' + e.message + '<br>Check if CDN scripts are loaded correctly or if there is a tool naming mismatch.</div>';
+                console.error("Editor.js Init Error: ", e);
+            }
         }
-    });
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initEditor);
+        } else {
+            initEditor();
+        }
+    })();
 </script>

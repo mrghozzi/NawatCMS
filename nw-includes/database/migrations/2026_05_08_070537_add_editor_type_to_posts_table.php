@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('posts', function (Blueprint $table) {
-            $table->string('editor_type')->default('editorjs')->after('content');
+            $table->string('editor_type')->default('quill')->after('content');
         });
     }
 
