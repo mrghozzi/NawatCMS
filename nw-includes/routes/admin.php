@@ -22,6 +22,14 @@ Route::prefix('admin')->name('admin.')->group(function () {
         
         // Dashboard
         Route::get('/', [\App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard');
+
+        // Themes
+        Route::get('themes', [\App\Http\Controllers\Admin\ThemeController::class, 'index'])->name('themes.index');
+        Route::post('themes/{slug}/activate', [\App\Http\Controllers\Admin\ThemeController::class, 'activate'])->name('themes.activate');
+
+        // Content
+        Route::resource('posts', \App\Http\Controllers\Admin\PostController::class);
+        Route::resource('pages', \App\Http\Controllers\Admin\PageController::class);
     });
 
 });

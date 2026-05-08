@@ -24,20 +24,20 @@
                         Dashboard <span lang="ar" dir="rtl">الرئيسية</span>
                     </a>
                 </li>
-                <li>
-                    <a href="#">
+                <li class="{{ request()->routeIs('admin.posts.*') ? 'is-active' : '' }}">
+                    <a href="{{ route('admin.posts.index') }}">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 1 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
                         Posts <span lang="ar" dir="rtl">المقالات</span>
                     </a>
                 </li>
-                <li>
-                    <a href="#">
+                <li class="{{ request()->routeIs('admin.pages.*') ? 'is-active' : '' }}">
+                    <a href="{{ route('admin.pages.index') }}">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
                         Pages <span lang="ar" dir="rtl">الصفحات</span>
                     </a>
                 </li>
-                <li>
-                    <a href="#">
+                <li class="{{ request()->routeIs('admin.themes.*') ? 'is-active' : '' }}">
+                    <a href="{{ route('admin.themes.index') }}">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"></path><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path><path d="M2 2l7.5 1.5"></path><path d="M14 11l5 5"></path></svg>
                         Themes <span lang="ar" dir="rtl">القوالب</span>
                     </a>
