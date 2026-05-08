@@ -30,24 +30,18 @@ This file is the execution reference for agents working on Nawat CMS. It summari
   - Contains `app/`, `bootstrap/`, `config/`, `database/`, `routes/`, `storage/`, `vendor/`.
 
 ## Current Foundation State
-- Laravel 12 has been initialized in `nw-includes`.
-- Root `index.php` boots `nw-includes/vendor/autoload.php` and `nw-includes/bootstrap/app.php`.
-- Laravel `base_path()` remains `nw-includes`.
-- Laravel `public_path()` is configured to the project root so `/nw-admin/assets/...` and `/nw-content/...` resolve from the shared-hosting web root.
-- `/install` is registered through `nw-includes/routes/install.php`.
-- The first installer view exists at `nw-admin/views/install/index.blade.php`.
-- Installer styling exists at `nw-admin/assets/css/install.css`.
-- SuperDesign context exists in `.superdesign/`.
+- **Core:** Laravel 12 initialized in `nw-includes`. Custom path mapping links `nw-admin` and `nw-content` to the shared-hosting root.
+- **Installer:** Fully functional and locked via `.install-lock`. Creates `.env`, runs migrations, and generates the first admin account.
+- **Admin Workspace:** Secure `/admin` routes using standard Laravel Auth. Includes a SuperDesign-styled dashboard, authentication flow, and sidebar navigation.
+- **Content Management:** Unified `posts` table (WordPress-style) supporting `post` and `page` types, managed via `PostController` and `PageController`.
+- **Theme Engine:** `ThemeServiceProvider` dynamically binds the `theme::` namespace to the active theme directory (`nw-content/themes/{slug}`).
+- **Front-end Router:** `FrontController` handles root (`/`) and catch-all slug routing (`/{slug}`), rendering content through the active theme.
+
 
 ## Service Providers
-- `AppServiceProvider`
-  - Registers `NawatPathService`.
-- `AdminServiceProvider`
-  - Registers the `admin` view namespace.
-  - Shares `AdminAssetService` with admin views as `$adminAssets`.
-- `ThemeServiceProvider`
-  - Binds `ThemeRepositoryInterface` to `FilesystemThemeRepository`.
-  - Registers `ThemeService`.
+- `AppServiceProvider`: Registers `NawatPathService`.
+- `AdminServiceProvider`: Registers the `admin` view namespace and shares `AdminAssetService` with admin views as `$adminAssets`.
+- `ThemeServiceProvider`: Binds `ThemeRepositoryInterface` to `FilesystemThemeRepository`, registers `ThemeService`, and boots the dynamic `theme::` view namespace pointing to the active theme.
 
 ## Implementation Standards
 - Use PHP 8.2+ strict types.
@@ -73,7 +67,8 @@ Run commands from `nw-includes` with XAMPP PHP on PATH:
 
 ```powershell
 $env:PATH='E:\xampp\php;' + $env:PATH
-php artisan route:list --path=install
+php artisan route:list
+php artisan migrate:status
 php artisan test
 ./vendor/bin/pint --test
 ```
@@ -81,12 +76,12 @@ php artisan test
 Apache smoke checks from the project root:
 
 ```powershell
-Invoke-WebRequest -UseBasicParsing -Uri http://localhost/NawatCMS/install
+Invoke-WebRequest -UseBasicParsing -Uri http://localhost/NawatCMS/admin/login
 Invoke-WebRequest -UseBasicParsing -Uri http://localhost/NawatCMS/nw-includes/composer.json
 ```
 
 Expected results:
-- `/install` returns `200`.
+- `/admin/login` returns `200`.
 - Direct access to `nw-includes/composer.json` returns `403`.
 
 ## Canonical Source

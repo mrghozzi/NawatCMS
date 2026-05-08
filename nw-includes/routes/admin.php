@@ -30,6 +30,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
         // Content
         Route::resource('posts', \App\Http\Controllers\Admin\PostController::class);
         Route::resource('pages', \App\Http\Controllers\Admin\PageController::class);
+
+        // Settings
+        Route::get('settings', [\App\Http\Controllers\Admin\SettingController::class, 'index'])->name('settings.index');
+        Route::post('settings', [\App\Http\Controllers\Admin\SettingController::class, 'update'])->name('settings.update');
     });
 
 });

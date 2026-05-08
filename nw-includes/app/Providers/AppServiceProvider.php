@@ -25,6 +25,8 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(\App\Services\EnvService::class, function (Application $app): \App\Services\EnvService {
             return new \App\Services\EnvService($app->basePath('.env'));
         });
+
+        $this->app->singleton(\App\Services\SettingsService::class);
     }
 
     /**

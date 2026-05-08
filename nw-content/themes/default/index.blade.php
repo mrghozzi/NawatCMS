@@ -97,8 +97,8 @@
 
     <main>
         <div class="hero">
-            <h1>{{ config('app.name', 'Nawat CMS') }}</h1>
-            <p class="subtitle">Welcome to your new website powered by Nawat CMS.</p>
+            <h1>{{ setting('site_name', config('app.name', 'Nawat CMS')) }}</h1>
+            <p class="subtitle">{{ setting('site_description', 'Welcome to your new website powered by Nawat CMS.') }}</p>
         </div>
 
         <div class="grid">
@@ -125,7 +125,7 @@
     </main>
 
     <footer>
-        &copy; {{ date('Y') }} {{ config('app.name', 'Nawat CMS') }}. Powered by Nawat CMS.
+        &copy; {{ date('Y') }} {{ setting('site_name', config('app.name', 'Nawat CMS')) }}. Powered by Nawat CMS.
     </footer>
 </body>
 </html>
