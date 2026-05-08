@@ -34,6 +34,12 @@ Route::prefix('admin')->name('admin.')->group(function () {
         // Settings
         Route::get('settings', [\App\Http\Controllers\Admin\SettingController::class, 'index'])->name('settings.index');
         Route::post('settings', [\App\Http\Controllers\Admin\SettingController::class, 'update'])->name('settings.update');
+
+        // Menus
+        Route::resource('menus', \App\Http\Controllers\Admin\MenuController::class)->except(['create', 'edit']);
+        Route::post('menus/{menu}/items', [\App\Http\Controllers\Admin\MenuController::class, 'storeItem'])->name('menus.items.store');
+        Route::delete('menus/{menu}/items/{item}', [\App\Http\Controllers\Admin\MenuController::class, 'destroyItem'])->name('menus.items.destroy');
     });
+
 
 });

@@ -94,7 +94,15 @@
     <header>
         <a href="/" class="logo">{{ setting('site_name', config('app.name', 'Nawat CMS')) }}</a>
         <nav>
-            <a href="/" style="color: #4b5563; text-decoration: none; font-weight: 500;">Home</a>
+            @php $primaryMenu = nawat_menu('primary'); @endphp
+            @if($primaryMenu && $primaryMenu->parentItems->isNotEmpty())
+                @foreach($primaryMenu->parentItems as $item)
+                    <a href="{{ nawat_menu_url($item) }}" style="color: #4b5563; text-decoration: none; font-weight: 500;">{{ $item->title }}</a>
+                @endforeach
+            @else
+                <!-- Fallback menu if no primary menu is assigned -->
+                <a href="/" style="color: #4b5563; text-decoration: none; font-weight: 500;">Home</a>
+            @endif
         </nav>
     </header>
 
