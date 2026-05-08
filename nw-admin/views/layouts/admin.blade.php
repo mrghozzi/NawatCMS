@@ -51,7 +51,13 @@
                 <li class="{{ request()->routeIs('admin.menus.*') ? 'is-active' : '' }}">
                     <a href="{{ route('admin.menus.index') }}">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
-                        Menus <span lang="ar" dir="rtl">القوائم</span>
+                        {{ __('Menus') }} <span lang="ar" dir="rtl">القوائم</span>
+                    </a>
+                </li>
+                <li class="{{ request()->routeIs('admin.plugins.*') ? 'is-active' : '' }}">
+                    <a href="{{ route('admin.plugins.index') }}">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                        {{ __('Plugins') }} <span lang="ar" dir="rtl">الإضافات</span>
                     </a>
                 </li>
                 <li>

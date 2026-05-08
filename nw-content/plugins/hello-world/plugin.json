@@ -1,0 +1,8 @@
+{
+  "name": "Hello World",
+  "slug": "hello-world",
+  "description": "A sample plugin to demonstrate the dynamic autoloading architecture.",
+  "version": "1.0.0",
+  "author": "Nawat CMS",
+  "provider": "Plugins\\HelloWorld\\Providers\\PluginServiceProvider"
+}

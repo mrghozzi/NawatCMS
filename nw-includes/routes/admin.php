@@ -42,6 +42,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
         // Media
         Route::resource('media', \App\Http\Controllers\Admin\MediaController::class)->only(['index', 'store', 'destroy']);
+
+        // Plugins
+        Route::get('plugins', [\App\Http\Controllers\Admin\PluginController::class, 'index'])->name('plugins.index');
+        Route::post('plugins/{slug}/toggle', [\App\Http\Controllers\Admin\PluginController::class, 'toggle'])->name('plugins.toggle');
     });
 
 
