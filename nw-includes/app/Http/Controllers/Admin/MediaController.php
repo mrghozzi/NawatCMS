@@ -17,14 +17,22 @@ class MediaController extends Controller
         return view('admin::media.index', compact('media'));
     }
 
-    public function store(Request $request, MediaService $service): RedirectResponse
+    public function store(Request $request, MediaService $service)
     {
         $request->validate([
             'file' => ['required', 'file', 'max:5120', 'mimes:jpg,jpeg,png,gif,webp,pdf,doc,docx,txt'], // 5MB max
             'alt_text' => ['nullable', 'string', 'max:255'],
         ]);
 
-        $service->upload($request->file('file'), $request->input('alt_text'));
+        $media = $service->upload($request->file('file'), $request->input('alt_text'));
+
+        if ($request->expectsJson()) {
+            return response()->json([
+                'success' => true,
+                'url' => asset('nw-content/uploads/' . $media->path),
+                'media' => $media
+            ]);
+        }
 
         return redirect()->back()->with('success', 'File uploaded successfully.');
     }

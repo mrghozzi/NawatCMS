@@ -55,7 +55,49 @@
             var quill = new Quill('#quill-editor-{{ $name }}', {
                 theme: 'snow',
                 modules: {
-                    toolbar: '#quill-toolbar-{{ $name }}'
+                    toolbar: {
+                        container: '#quill-toolbar-{{ $name }}',
+                        handlers: {
+                            image: function() {
+                                var input = document.createElement('input');
+                                input.setAttribute('type', 'file');
+                                input.setAttribute('accept', 'image/*');
+                                input.click();
+
+                                input.onchange = function() {
+                                    var file = input.files[0];
+                                    if (file) {
+                                        var formData = new FormData();
+                                        formData.append('file', file);
+                                        formData.append('_token', '{{ csrf_token() }}');
+
+                                        var range = quill.getSelection(true);
+
+                                        fetch('{{ route('admin.media.store') }}', {
+                                            method: 'POST',
+                                            headers: {
+                                                'Accept': 'application/json'
+                                            },
+                                            body: formData
+                                        })
+                                        .then(response => response.json())
+                                        .then(data => {
+                                            if (data.success && data.url) {
+                                                quill.insertEmbed(range.index, 'image', data.url);
+                                                quill.setSelection(range.index + 1);
+                                            } else {
+                                                alert('Upload failed.');
+                                            }
+                                        })
+                                        .catch(error => {
+                                            console.error('Error:', error);
+                                            alert('Upload failed. Check console.');
+                                        });
+                                    }
+                                };
+                            }
+                        }
+                    }
                 }
             });
 
