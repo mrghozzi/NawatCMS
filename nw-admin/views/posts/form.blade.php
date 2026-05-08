@@ -23,7 +23,11 @@
 
                     <div class="form-group">
                         <label for="content" style="display: block; margin-bottom: 8px; font-weight: 500;">Content <span lang="ar" dir="rtl">المحتوى</span></label>
-                        <textarea id="content" name="content" rows="15" style="width: 100%; padding: 12px; border: 1px solid var(--border); border-radius: 8px; font-size: 14px; font-family: inherit; box-sizing: border-box; resize: vertical; line-height: 1.6;">{{ old('content', $post->content) }}</textarea>
+                        @include('admin::components.editor', [
+                            'name' => 'content', 
+                            'value' => old('content', $post->content), 
+                            'type' => old('editor_type', $post->editor_type ?? 'editorjs')
+                        ])
                         @error('content') <span style="color: #e53e3e; font-size: 13px; margin-top: 4px; display: block;">{{ $message }}</span> @enderror
                     </div>
                 </div>

@@ -16,6 +16,7 @@ class Post extends Model
         'status',
         'type',
         'published_at',
+        'editor_type',
     ];
 
     protected $casts = [

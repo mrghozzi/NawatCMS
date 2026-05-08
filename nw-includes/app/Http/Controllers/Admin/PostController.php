@@ -33,6 +33,7 @@ final class PostController extends Controller
         $validated = $request->validate([
             'title' => ['required', 'string', 'max:255'],
             'content' => ['nullable', 'string'],
+            'editor_type' => ['nullable', 'string'],
             'status' => ['required', 'in:published,draft,trash'],
             'categories' => ['nullable', 'array'],
             'categories.*' => ['exists:categories,id'],
@@ -85,6 +86,7 @@ final class PostController extends Controller
         $validated = $request->validate([
             'title' => ['required', 'string', 'max:255'],
             'content' => ['nullable', 'string'],
+            'editor_type' => ['nullable', 'string'],
             'status' => ['required', 'in:published,draft,trash'],
             'categories' => ['nullable', 'array'],
             'categories.*' => ['exists:categories,id'],
