@@ -24,6 +24,12 @@
                         Dashboard <span lang="ar" dir="rtl">الرئيسية</span>
                     </a>
                 </li>
+                <li class="{{ request()->routeIs('admin.media.*') ? 'is-active' : '' }}">
+                    <a href="{{ route('admin.media.index') }}">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+                        Media <span lang="ar" dir="rtl">الوسائط</span>
+                    </a>
+                </li>
                 <li class="{{ request()->routeIs('admin.posts.*') ? 'is-active' : '' }}">
                     <a href="{{ route('admin.posts.index') }}">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 1 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>

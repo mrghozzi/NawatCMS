@@ -39,7 +39,11 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::resource('menus', \App\Http\Controllers\Admin\MenuController::class)->except(['create', 'edit']);
         Route::post('menus/{menu}/items', [\App\Http\Controllers\Admin\MenuController::class, 'storeItem'])->name('menus.items.store');
         Route::delete('menus/{menu}/items/{item}', [\App\Http\Controllers\Admin\MenuController::class, 'destroyItem'])->name('menus.items.destroy');
+
+        // Media
+        Route::resource('media', \App\Http\Controllers\Admin\MediaController::class)->only(['index', 'store', 'destroy']);
     });
+
 
 
 });

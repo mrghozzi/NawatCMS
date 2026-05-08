@@ -60,7 +60,17 @@ return [
             'report' => false,
         ],
 
+        'nawat_uploads' => [
+            'driver' => 'local',
+            'root' => dirname(base_path()) . '/nw-content/uploads',
+            'url' => env('APP_URL') . '/nw-content/uploads',
+            'visibility' => 'public',
+            'throw' => false,
+            'report' => false,
+        ],
+
     ],
+
 
     /*
     |--------------------------------------------------------------------------
