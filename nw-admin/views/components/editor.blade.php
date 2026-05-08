@@ -1,9 +1,11 @@
 @props(['name', 'value' => '', 'type' => 'quill'])
 
 @php
-    // If the system has a dynamic setting for default_editor, we could override $type here if it's a new post.
-    // For now, we rely on the $type passed from the form (which defaults to 'quill').
+    // Map legacy or empty values to the default editor
     $activeEditor = $type ?: 'quill';
+    if ($activeEditor === 'editorjs' || $activeEditor === 'tinymce') {
+        $activeEditor = 'quill'; // Fallback to current default for old posts
+    }
 @endphp
 
 <div class="nawat-editor-wrapper">
