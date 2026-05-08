@@ -49,7 +49,7 @@
 
                     <div style="padding-top: 16px; border-top: 1px solid var(--border); display: flex; justify-content: flex-end; gap: 12px;">
                         <a href="{{ route('admin.posts.index') }}" style="padding: 10px 16px; border: 1px solid var(--border); border-radius: 8px; color: var(--text); text-decoration: none; font-size: 14px; font-weight: 500;">Cancel</a>
-                        <button type="submit" style="padding: 10px 16px; background: var(--primary); color: white; border: none; border-radius: 8px; font-size: 14px; font-weight: 500; cursor: pointer;">
+                        <button type="submit" style="padding: 10px 16px; background: var(--accent); color: white; border: none; border-radius: 8px; font-size: 14px; font-weight: 500; cursor: pointer;">
                             {{ $post->exists ? 'Update Post' : 'Publish Post' }}
                         </button>
                     </div>

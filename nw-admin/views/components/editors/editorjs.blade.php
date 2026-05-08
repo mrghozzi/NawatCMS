@@ -40,8 +40,8 @@
         let existingData = {};
         try {
             // Check if the value is valid JSON, otherwise it might be empty or old HTML
-            const rawValue = `{!! addslashes($value) !!}`;
-            if (rawValue && rawValue.trim().startsWith('{')) {
+            const rawValue = {!! json_encode($value) !!};
+            if (typeof rawValue === 'string' && rawValue.trim().startsWith('{')) {
                 existingData = JSON.parse(rawValue);
             }
         } catch (e) {
