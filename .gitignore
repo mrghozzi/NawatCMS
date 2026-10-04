@@ -6,6 +6,7 @@
 /nw-includes/.env
 /nw-includes/.env.backup
 /nw-includes/.env.production
+/nw-includes/vendor/
 /nw-includes/node_modules/
 /nw-includes/public/build/
 /nw-includes/public/hot
